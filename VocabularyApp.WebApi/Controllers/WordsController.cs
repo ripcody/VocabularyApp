@@ -14,6 +14,7 @@ public class WordsController : ControllerBase
 
     public WordsController(IWordService wordService, ILogger<WordsController> logger)
     {
+        // This is a comment
         _wordService = wordService;
         _logger = logger;
     }
@@ -85,7 +86,7 @@ public class WordsController : ControllerBase
             }
 
             var result = await _wordService.GetWordFromCacheAsync(word);
-            
+
             if (result != null)
             {
                 return Ok(ApiResponse<WordDto>.SuccessResult(result));
@@ -114,7 +115,7 @@ public class WordsController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse<List<WordDto>>), 200)]
     [ProducesResponseType(typeof(ApiResponse<object>), 400)]
     public async Task<ActionResult<ApiResponse<List<WordDto>>>> SearchWords(
-        [FromQuery] string searchTerm, 
+        [FromQuery] string searchTerm,
         [FromQuery] int maxResults = 50)
     {
         try
